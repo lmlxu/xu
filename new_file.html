@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人网页</title>
+    <style>
+        /* 整体页面的基本样式设置 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #333;
+            animation: fadeInDown 1s ease;
+        }
+
+        /* 各板块的容器样式 */
+      .section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        /* 按钮样式 */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 留言列表样式 */
+      .message-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+      .message-item {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            animation: fadeInLeft 0.5s ease;
+            animation-delay: 0.5s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 网页头部，显示大标题 -->
+    <h1>欢迎来到我的小天地</h1>
+
+    <!-- 个人介绍板块 -->
+    <div class="section">
+        <h2>关于我</h2>
+        <p>嗨，大家好呀！我叫xu，是一个对世界充满好奇，热爱探索各种有趣事物的人。平时喜欢在知识的海洋里遨游，也热衷于结交各路有趣的朋友呢。我相信生活中的每一个小细节都可能隐藏着大惊喜，所以总是带着一颗发现的心去面对日常。无论是古老的历史故事，还是前沿的科技动态，都能让我兴奋不已，希望能在这里与你分享我的点滴感悟和快乐时光。</p>
+    </div>
+
+    <!-- 兴趣爱好板块 -->
+    <div class="section">
+        <h2>我的兴趣爱好</h2>
+        <ul>
+            <li>读书：沉浸在一本好书里，仿佛能进入另一个奇妙的世界，感受不同的人生故事，我觉得特别有意思。从经典文学到科幻冒险，每一本书都是一扇通往新世界的大门。</li>
+            <li>编程：通过代码来创造出各种好玩的小工具或者有意思的网页，就像在搭建自己的魔法世界一样。看着自己的想法一点点变成现实，那种成就感无与伦比。</li>
+            <li>户外运动：爬山、骑行都是我的最爱，既能锻炼身体，又能欣赏美丽的自然风光，超赞的！站在山顶俯瞰大地，或者在骑行途中感受风的拥抱，都能让我忘却一切烦恼，与大自然亲密无间。</li>
+        </ul>
+    </div>
+
+    <!-- 留言互动板块 -->
+    <div class="section">
+        <h2>留下你的足迹</h2>
+        <p>希望你能在这里留下一些话哦，咱们可以一起分享好玩的事儿。</p>
+        <textarea id="messageTextarea" rows="4" cols="50" placeholder="在这里写下你的留言"></textarea><br>
+        <button onclick="addMessage()">提交留言</button>
+
+        <ul id="messageList" class="message-list">
+            <!-- 这里将动态添加留言 -->
+        </ul>
+    </div>
+
+    <script>
+        // 存储留言的数组
+        let messages = [];
+
+        // 添加留言函数
+        function addMessage() {
+            const messageTextarea = document.getElementById('messageTextarea');
+            const message = messageTextarea.value.trim();
+            if (message!== '') {
+                messages.push(message);
+                displayMessages();
+                messageTextarea.value = '';
+            }
+        }
+
+        // 显示留言函数
+        function displayMessages() {
+            const messageList = document.getElementById('messageList');
+            messageList.innerHTML = '';
+            messages.forEach((message, index) => {
+                const li = document.createElement('li');
+                li.className ='message-item';
+                li.textContent = `留言 ${index + 1}: ${message}`;
+                messageList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+
+</html>
